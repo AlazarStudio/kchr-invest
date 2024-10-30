@@ -1,0 +1,165 @@
+.main {
+  margin: 160px 0 50px 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.article_header {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.article_header :first-child {
+  width: 1000px;
+  font-size: 40px;
+  line-height: 48px;
+  font-weight: 600;
+}
+
+.article_header :last-child {
+  font-size: 24px;
+  font-weight: 700;
+  color: #006FC7;
+}
+
+.article_text {
+  padding: 20px 30px;
+  font-size: 20px;
+  line-height: 30px;
+  border: 1px solid #777;
+  border-radius: 20px;
+}
+
+.article_images {
+  padding: 20px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 45px;
+}
+
+.article_images img {
+  flex-basis: 31%;
+  width: 31%;
+  height: 400px;
+  border-radius: 20px;
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.modal_content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  outline: none;
+  position: relative;
+}
+
+.modal_image {
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.image_thumbnail {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.image_thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.seeAlso {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.sliderBox {
+  overflow: visible;
+  padding: 20px 0;
+  width: 1300px;
+}
+
+@media (max-width: 1299px) {
+  .main {
+    margin: 90px 0 50px 0;
+  }
+
+  .article_header {
+    padding: 0 16px;
+    gap: 20px;
+  }
+
+  .article_header :first-child {
+    width: 100%;
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .article_header :last-child {
+    font-size: 12px;
+  }
+
+  .article_text {
+    margin: 0 16px;
+    padding: 15px 20px;
+    font-size: 14px;
+    line-height: 22px;
+    border-radius: 10px;
+  }
+
+  .article_images {
+    padding: 0 16px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0;
+    row-gap: 20px;
+  }
+
+  .article_images img {
+    flex-basis: 48%;
+    width: 48%;
+    height: 220px;
+  }
+
+  .image_thumbnail:hover {
+    transform: scale(1);
+  }
+
+  .seeAlso {
+    padding: 0 16px;
+    font-size: 24px;
+  }
+
+  .sliderBox {
+    padding: 16px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,17 @@
+.not_found {
+  min-height: 65vh;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primaryColor);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 1299px) {
+  .not_found {
+    padding: 0 16px;
+    min-height: 69vh;
+    font-size: 20px;
+  }
+}

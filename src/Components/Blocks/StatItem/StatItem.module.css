@@ -1,0 +1,48 @@
+.stat_item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.stat_item :first-child {
+  font-size: 50px;
+  font-weight: 700;
+  color: var(--secondaryColor);
+}
+
+.stat_item :nth-child(2) {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--secondaryColor);
+}
+
+.stat_item :last-child {
+  font-size: 16px;
+  color: #000;
+}
+
+@media (max-width: 1299px) {
+  .stat_item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .stat_item :first-child {
+    font-size: 36px;
+  }
+  
+  .stat_item :nth-child(2) {
+    font-size: 14px;
+  }
+  
+  .stat_item :last-child {
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+  }
+}

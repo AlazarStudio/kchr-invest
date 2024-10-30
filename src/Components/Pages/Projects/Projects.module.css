@@ -1,0 +1,28 @@
+.main {
+  margin: 150px 0 50px 0;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+@media (max-width: 1299px) {
+  .main {
+    margin: 90px 0 50px 0;
+  }
+
+  .title {
+    padding: 0 16px;
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .projects_wrapper {
+    padding: 0 16px;
+  }
+}

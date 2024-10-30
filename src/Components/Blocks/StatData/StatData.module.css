@@ -1,0 +1,24 @@
+.stat_data__section {
+  margin-top: 70px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 65px;
+}
+
+.stat_data__section div {
+  flex-basis: 16%;
+}
+
+@media (max-width: 1299px) {
+  .stat_data__section {
+    margin-top: 40px;
+    padding: 0 16px;
+    justify-content: space-between;
+    gap: 0;
+    row-gap: 25px;
+  }
+  
+  .stat_data__section div {
+    flex-basis: 48%;
+  }
+}

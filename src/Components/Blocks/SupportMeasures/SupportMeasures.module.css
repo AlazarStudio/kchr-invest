@@ -1,0 +1,95 @@
+.support_measures {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+
+.sm_t {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.sliderBox {
+  padding: 20px;
+  width: 1300px;
+}
+
+.swiper_buttons {
+  width: 100%;
+  position: absolute;
+  top: 58%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.swiper_buttons :first-child{
+  top: 50%;
+  left: -40px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.swiper_buttons :last-child{
+  top: 50%;
+  right: -40px;
+  position: absolute;
+  cursor: pointer;
+}
+
+
+@media (max-width: 1299px) {
+  .support_measures {
+    margin-bottom: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .sm_t {
+    padding: 0 16px;
+    font-size: 24px;
+  }
+  
+  .sliderBox {
+    padding: 16px;
+    width: 100%;
+  }
+  
+  .swiper_buttons {
+    width: 100%;
+    position: relative;
+    top: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .swiper_buttons :first-child{
+    padding: 18px;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    top: auto;
+    left: 30%;
+    position: absolute;
+    cursor: pointer;
+    border: 1px solid rgba(108, 113, 127, 0.25);
+    border-radius: 50%;
+  }
+  
+  .swiper_buttons :last-child{
+    padding: 18px;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    top: auto;
+    right: 30%;
+    position: absolute;
+    cursor: pointer;
+    border: 1px solid rgba(108, 113, 127, 0.25);
+    border-radius: 50%;
+  }
+  
+}
