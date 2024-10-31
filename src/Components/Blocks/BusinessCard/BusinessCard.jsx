@@ -6,9 +6,13 @@ function BusinessCard({ children, ...props }) {
 			<p style={{ textTransform: 'uppercase' }}>
 				Инвестиционная визитка региона
 			</p>
-			<video className={styles.video} controls width='100%'>
-				<source src='/video/render_title.mp4' type='video/mp4'/>
-			</video>
+			<iframe
+				className={styles.video}
+				src='https://drive.google.com/file/d/1a-G-8yTR4gIhU0zj6kv9LvYEHF9zUehZ/preview'
+				width='100%'
+				// height='480'
+				allow='autoplay'
+			></iframe>
 		</section>
 	)
 }

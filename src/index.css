@@ -6,20 +6,16 @@
     scroll-behavior: smooth;
 }
 
-<<<<<<< HEAD
 html {
     box-sizing: border-box;
     font-size: 16px;
     height: 100%;
 }
 
-=======
->>>>>>> 882cfeab6b7575d14f774e433503edade9c06a71
 a {
     text-decoration: none;
 }
 
-<<<<<<< HEAD
 button {
     cursor: pointer;
 }
@@ -116,19 +112,3 @@ body::-webkit-scrollbar-thumb {
 /* * {
     outline: 1px solid rgba(21, 255, 4, 0.6);
 } */
-=======
-:root {
-    --blockWidth: 1300px;
-}
-
-body {
-    background-color: #eef0f4;
-}
-
-main {
-    display: flex;
-    flex-direction: column;
-    gap: 80px;
-    padding-bottom: 80px;
-}
->>>>>>> 882cfeab6b7575d14f774e433503edade9c06a71

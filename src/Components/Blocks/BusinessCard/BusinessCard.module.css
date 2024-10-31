@@ -10,9 +10,10 @@
   font-weight: 600;
 }
 
-.video {
-  height: fit-content;
+.video_section iframe {
+  height: 550px;
 }
+
 
 @media (max-width: 1299px) {
   .video_section {
@@ -21,13 +22,18 @@
     flex-direction: column;
     gap: 30px;
   }
-  
+
   .video_section p {
     padding: 20px 16px 0 16px;
     top: 0;
     font-size: 24px;
   }
-  
+
+  .video_section iframe {
+    height: fit-content;
+  }
+
+
   .video {
     height: fit-content;
   }
