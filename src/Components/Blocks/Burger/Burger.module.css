@@ -51,7 +51,7 @@
     top: 60px;
     right: 0;
     width: 200px;
-    height: 420px;
+    height: 370px;
     background-color: #fff;
     padding: 15px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
@@ -85,6 +85,10 @@
   .nav_list a li {
     font-size: 12px;
     /* text-align: center; */
+  }
+
+  .nav_item {
+    padding: 7px 0;
   }
 
   .burger_item {

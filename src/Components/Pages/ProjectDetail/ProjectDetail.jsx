@@ -1,4 +1,5 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
+import Modal from 'react-modal'
 import { useParams } from 'react-router-dom'
 
 import { projects } from '../../../../data'
@@ -7,9 +8,20 @@ import WidthBlock from '../../Standart/WidthBlock/WidthBlock'
 
 import styles from './ProjectDetail.module.css'
 
+Modal.setAppElement('#root')
+
 function ProjectDetail() {
 	const { id } = useParams()
 	const project = projects.find(item => item.id == id)
+	const [selectedImage, setSelectedImage] = useState(null)
+
+	const openModal = img => {
+		setSelectedImage(img)
+	}
+
+	const closeModal = () => {
+		setSelectedImage(null)
+	}
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'instant' })
@@ -97,6 +109,39 @@ function ProjectDetail() {
 							></p>
 						</div>
 					</div>
+
+					<div className={styles.article_images}>
+						{project.images &&
+							Array.isArray(project.images) &&
+							project.images.map((img, index) => (
+								<img
+									key={index}
+									src={img}
+									// src={`${uploadsConfig}${img}`}
+									alt=''
+									className={styles.image_thumbnail}
+									onClick={() => openModal(img)}
+								/>
+							))}
+					</div>
+
+					<Modal
+						isOpen={!!selectedImage}
+						onRequestClose={closeModal}
+						contentLabel='Просмотр изображения'
+						className={styles.modal_content}
+						overlayClassName={styles.modal_overlay}
+					>
+						<img
+							// src={`${uploadsConfig}${selectedImage}`}
+							src={selectedImage}
+							alt=''
+							className={styles.modal_image}
+						/>
+						<button className={styles.close_button} onClick={closeModal}>
+							x
+						</button>
+					</Modal>
 				</WidthBlock>
 			</CenterBlock>
 		</main>

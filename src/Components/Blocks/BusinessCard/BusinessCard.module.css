@@ -12,6 +12,7 @@
 
 .video_section iframe {
   height: 550px;
+  border: none;
 }
 
 
@@ -30,7 +31,7 @@
   }
 
   .video_section iframe {
-    height: fit-content;
+    height: 220px;
   }
 
 

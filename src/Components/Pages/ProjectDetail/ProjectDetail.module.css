@@ -137,6 +137,69 @@
   gap: 10px;
 }
 
+.article_images {
+  /* padding: 20px 0; */
+  display: flex;
+  flex-wrap: wrap;
+  gap: 45px;
+}
+
+.article_images img {
+  flex-basis: 31%;
+  width: 31%;
+  height: 400px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999999;
+}
+
+.modal_content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  outline: none;
+  position: relative;
+}
+
+.modal_image {
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+.close_button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.image_thumbnail {
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.image_thumbnail:hover {
+  transform: scale(1.05);
+}
+
 
 @media (max-width: 1299px) {
   .main {
@@ -212,14 +275,14 @@
     font-size: 20px;
     line-height: 30px;
   }
-  
+
   .indicators {
     padding: 0 16px;
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
   }
-  
+
   .indicator_item {
     padding: 0 20px;
     flex-basis: 100%;
@@ -229,12 +292,12 @@
     gap: 20px;
     border-radius: 10px;
   }
-  
+
   .indicator_item :first-child {
     font-size: 12px;
     line-height: 18px;
   }
-  
+
   .indicator_item :last-child {
     font-size: 20px;
     line-height: 30px;
@@ -247,7 +310,7 @@
     gap: 20px;
     border-radius: 10px;
   }
-  
+
   .info_item {
     gap: 10px;
   }
@@ -255,5 +318,24 @@
   .info_item :last-child {
     font-size: 12px;
     line-height: 18px;
+  }
+
+  .article_images {
+    /* padding: 0 16px; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0;
+    row-gap: 20px;
+  }
+
+  .article_images img {
+    flex-basis: 48%;
+    width: 48%;
+    height: 220px;
+  }
+
+  .image_thumbnail:hover {
+    transform: scale(1);
   }
 }

@@ -20,6 +20,19 @@
   z-index: 1;
 }
 
+.main_banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60%;
+  height: 100%;
+  background-color: var(--secondaryColor);
+  opacity: 0.5;
+  clip-path: polygon(0% 100%, 0% -55%, 35% 100%);
+  z-index: 1;
+}
+
 .main_info {
   height: 100%;
   padding: 0 0 0 5%;
@@ -89,6 +102,10 @@
   }
 
   .main_banner::before {
+    content: none;
+  }
+
+  .main_banner::after {
     content: none;
   }
 

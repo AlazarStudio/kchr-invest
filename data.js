@@ -193,7 +193,7 @@ export const projects = [
 		investmentIndicators:
 			'NPV – «3 169 361» тыс. руб., IRR – «23,71»%, срок окупаемости – «6,7» лет, EBITDA margin – «76»%',
 		productionVolume: '8992 тонн плодов',
-		annualRevenue: 537648.00,
+		annualRevenue: 537648.0,
 		financingStructure:
 			'Общая стоимость проекта – «800 202,00» тыс. руб., из них: за счет собственных средств (ООО Плодообъединение «Сады Ставрополья») – «280 000,00» тыс. руб. («34,99»%) за счет средств «инвестора» (АО Корпорация развития КЧР) – «278 002,00» тыс. руб. («34,74»%) в форме вхождения в уставной капитал за счет средств прочих инвесторов проекта (Займы) – «242 200,00» руб. («30,27»%)',
 		taxesAndInsurance:
@@ -214,5 +214,125 @@ export const aboutRegion = [
 	{
 		population: '468 336',
 		text: 'Карачаево-Черкесская Республика - один из самых южных субъектов Российской Федерации, который располагается в предгорьях Северо-Западного Кавказа и обеспечивает выход России к государствам Закавказья. На западе территория Карачаево-Черкесии граничит с Краснодарским краем, на севере и северо-востоке - со Ставропольским краем, на востоке - с Кабардино-Балкарской Республикой, на юге граница проходит по Главному Кавказскому хребту с Грузинской Республикой и Республикой Абхазия.'
+	}
+]
+
+export const investCategories = [
+	{
+		id: 1,
+		title: 'Документы инвесторам'
+	},
+	{
+		id: 2,
+		title: 'Свод инвестиционных правил'
+	}
+]
+
+export const investDocs = [
+	{
+		categoryId: 1,
+		images: '/images/pdf.png',
+		src: '/docs/invest_deklaratsia.pdf',
+		title: 'Государственное задание 2017'
+	},
+	{
+		categoryId: 1,
+		images: '/images/pdf.png',
+		src: '/docs/invest_deklaratsia.pdf',
+		title: 'Государственное задание 2018'
+	},
+	{
+		categoryId: 1,
+		images: '/images/pdf.png',
+		src: '/docs/invest_deklaratsia.pdf',
+		title: 'Государственное задание 2019'
+	},
+	{
+		categoryId: 1,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Отчет о выполнении государственного задания за 1 квартал 2019 года (объем предоставляемых социальных услуг)'
+	},
+	{
+		categoryId: 1,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Отчет о выполнении государственного задания за 2 квартал 2019 года (объем предоставляемых социальных услуг)'
+	},
+
+	{
+		categoryId: 2,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Закон Карачаево-Черкесской Республики от 15.12.2014 № 88-РЗ «О перечне социальных услуг, предоставляемых поставщиками социальных услуг в Карачаево-Черкесской Республике»'
+	},
+	{
+		categoryId: 2,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Закон Карачаево-Черкесской Республики от 15.12.2014 № 88-РЗ «О перечне социальных услуг, предоставляемых поставщиками социальных услуг в Карачаево-Черкесской Республике»'
+	},
+	{
+		categoryId: 2,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Закон Карачаево-Черкесской Республики от 15.12.2014 № 88-РЗ «О перечне социальных услуг, предоставляемых поставщиками социальных услуг в Карачаево-Черкесской Республике»'
+	},
+	{
+		categoryId: 2,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Закон Карачаево-Черкесской Республики от 15.12.2014 № 88-РЗ «О перечне социальных услуг, предоставляемых поставщиками социальных услуг в Карачаево-Черкесской Республике»'
+	},
+	{
+		categoryId: 2,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Закон Карачаево-Черкесской Республики от 15.12.2014 № 88-РЗ «О перечне социальных услуг, предоставляемых поставщиками социальных услуг в Карачаево-Черкесской Республике»'
+	},
+	{
+		categoryId: 2,
+		images: '/images/docx.png',
+		src: '/docs/investicionnaya_politika_KRKCHR.docx',
+		title:
+			'Закон Карачаево-Черкесской Республики от 15.12.2014 № 88-РЗ «О перечне социальных услуг, предоставляемых поставщиками социальных услуг в Карачаево-Черкесской Республике»'
+	}
+]
+
+export const contactsData = [
+	{
+		id: 1,
+		img: '/images/c_location.png',
+		link: 'https://yandex.ru/maps/-/CDXXJCjh',
+		title: 'Наш адрес',
+		value: 'Калантаевского 36, Черкесск'
+	},
+	{
+		id: 2,
+		img: '/images/c_email.png',
+		link: 'mailto:mail@kchr-invest.ru',
+		title: 'Электронная почта',
+		value: 'mail@kchr-invest.ru'
+	},
+	{
+		id: 3,
+		img: '/images/c_phone.png',
+		link: 'tel:+78782284237',
+		title: 'Телефон',
+		value: '+7 (8782) 28-42-37'
+	},
+	{
+		id: 4,
+		img: '/images/c_vk.png',
+		link: 'https://vk.com/public219294547',
+		title: 'Вконтакте',
+		value: ''
 	}
 ]
