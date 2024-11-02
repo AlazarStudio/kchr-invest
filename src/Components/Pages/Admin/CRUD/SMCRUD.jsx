@@ -3,39 +3,24 @@ import {
 	Create,
 	Datagrid,
 	Edit,
-	FileField,
-	FileInput,
-	FunctionField,
 	ImageField,
 	ImageInput,
 	List,
-	SimpleForm
+	SimpleForm,
+	TextField,
+	TextInput
 } from 'react-admin'
 
 import uploadsConfig from '../../../../uploadsConfig'
-import RichTextInput from '../Auth/RichTextInput'
 import { handleSave, handleSaveWithImages } from '../JS/fileUploadUtils'
 
-const stripHTML = html => {
-	const tmp = document.createElement('DIV')
-	tmp.innerHTML = html
-	return tmp.textContent || tmp.innerText || ''
-}
-
-// Валидация для ограничения количества изображений
-const validateImageCount = value => {
-	if (value && value.length > 3) {
-		return 'Можно загрузить не более 3 изображений'
-	}
-	return undefined
-}
-
-export const AboutUsList = props => (
+export const SMList = props => (
 	<List {...props}>
 		<Datagrid>
-			<FunctionField
-				label='Текст'
-				render={record => stripHTML(record.text)}
+			<TextField source='id' label='№' />
+			<TextField
+				source='title'
+				label='Заголовок'
 				style={{
 					display: '-webkit-box',
 					WebkitLineClamp: 4,
@@ -49,16 +34,16 @@ export const AboutUsList = props => (
 	</List>
 )
 
-export const AboutUsEdit = props => (
+export const SMEdit = props => (
 	<Edit {...props} transform={handleSaveWithImages}>
 		<SimpleForm>
-			<RichTextInput source='text' label='Текст' />
+			<TextInput disabled source='id' label='№' />
+			<TextInput source='title' label='Заголовок' />
 
 			<ImageInput
 				source='imagesRaw'
 				label='Добавить новые изображения'
 				multiple
-				validate={validateImageCount}
 			>
 				<ImageField source='src' title='title' />
 			</ImageInput>
@@ -96,16 +81,11 @@ export const AboutUsEdit = props => (
 	</Edit>
 )
 
-export const AboutUsCreate = props => (
+export const SMCreate = props => (
 	<Create {...props} transform={handleSave}>
 		<SimpleForm>
-			<RichTextInput source='text' label='Текст' />
-			<ImageInput
-				source='images'
-				label='Изображения'
-				multiple
-				validate={validateImageCount}
-			>
+			<TextInput source='title' label='Заголовок' />
+			<ImageInput source='images' label='Изображения' multiple>
 				<ImageField source='src' title='title' />
 			</ImageInput>
 		</SimpleForm>

@@ -20,7 +20,7 @@ function DocumentItem({ children, ...props }) {
 				alt=''
 			/>
 			<div className={styles.doc_info}>
-				<a href={`${props.src}`} target='_blank'>
+				<a href={`${uploadsConfig}${props.src}`} target='_blank'>
 					{props.title}
 				</a>
 				<p style={{ color: '#696969' }}>

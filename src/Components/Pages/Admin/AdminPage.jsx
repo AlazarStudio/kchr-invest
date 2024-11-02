@@ -21,8 +21,10 @@ import {
 	DocGroupsList
 } from './CRUD/DocGroupsCRUD'
 import { DocsCreate, DocsEdit, DocsList } from './CRUD/DocsCRUD'
+import { InfoCreate, InfoEdit, InfoList } from './CRUD/InfoCRUD'
 import { NewsCreate, NewsEdit, NewsList } from './CRUD/NewsCRUD'
 import { ProjectCreate, ProjectEdit, ProjectList } from './CRUD/ProjectsCRUD'
+import { SMCreate, SMEdit, SMList } from './CRUD/SMCRUD'
 import authProvider from './JS/authProvider'
 import { fetchJsonWithToken } from './JS/fetchJsonWithToken'
 import LoginPage from './LoginPage'
@@ -42,6 +44,14 @@ function AdminPage() {
 			i18nProvider={i18nProvider}
 		>
 			<Resource
+				name='support-measures'
+				options={{ label: 'Меры поддержки' }}
+				list={<SMList />}
+				edit={<SMEdit />}
+				create={<SMCreate />}
+			/>
+
+			<Resource
 				icon={NewspaperIcon}
 				name='news'
 				options={{ label: 'Новости' }}
@@ -59,7 +69,6 @@ function AdminPage() {
 				create={<ProjectCreate />}
 			/>
 
-			{/* 
 			<Resource
 				icon={TopicIcon}
 				name='docs'
@@ -67,7 +76,7 @@ function AdminPage() {
 				list={<DocsList />}
 				edit={<DocsEdit />}
 				create={<DocsCreate />}
-			/> */}
+			/>
 
 			{/* <Resource
 				icon={FolderCopyIcon}
@@ -77,6 +86,15 @@ function AdminPage() {
 				edit={<DocGroupsEdit />}
 				create={<DocGroupsCreate />}
 			/> */}
+
+			<Resource
+				icon={InfoIcon}
+				name='info'
+				options={{ label: 'О регионе' }}
+				list={<InfoList />}
+				edit={<InfoEdit />}
+				create={<InfoCreate />}
+			/>
 		</Admin>
 	)
 }

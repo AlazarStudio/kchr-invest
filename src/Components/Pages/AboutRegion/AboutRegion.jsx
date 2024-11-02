@@ -1,10 +1,37 @@
+import axios from 'axios'
+import DOMPurify from 'dompurify'
+import { useEffect, useState } from 'react'
+
 import { aboutRegion } from '../../../../data'
+import serverConfig from '../../../serverConfig'
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock'
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock'
 
 import styles from './AboutRegion.module.css'
 
+const fetchInfo = async () => {
+	try {
+		const response = await axios.get(`${serverConfig}/info`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching products:', error)
+		return []
+	}
+}
+
 function AboutRegion({ children, ...props }) {
+	const [info, setInfo] = useState([])
+
+	useEffect(() => {
+		const getInfo = async () => {
+			const info = await fetchInfo()
+			setInfo(info)
+		}
+		getInfo()
+	}, [])
+
+	const item = info[0]
+	console.log(info)
 	return (
 		<main className={styles.main}>
 			<div className={styles.region_banner}>
@@ -51,7 +78,12 @@ function AboutRegion({ children, ...props }) {
 				</div>
 			</div>
 			<div className={styles.text_wrapper}>
-				<p className={styles.text}>{aboutRegion[0].text}</p>
+				{info.length === 0 ? null : (
+					<p
+						className={styles.text}
+						dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(item.text) }}
+					></p>
+				)}
 			</div>
 		</main>
 	)

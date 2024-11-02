@@ -1,4 +1,5 @@
 import axios from 'axios'
+import DOMPurify from 'dompurify'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useParams } from 'react-router-dom'
@@ -88,7 +89,7 @@ function ProjectDetail() {
 								<p
 									className={styles.text}
 									dangerouslySetInnerHTML={{
-										__html: project.investmentIndicators
+										__html: DOMPurify.sanitize(project.investmentIndicators)
 									}}
 								></p>
 							</div>
@@ -122,7 +123,7 @@ function ProjectDetail() {
 							<p className={styles.subtitle}>Структура финансирования</p>
 							<p
 								dangerouslySetInnerHTML={{
-									__html: `${project.financingStructure}`
+									__html: DOMPurify.sanitize(project.financingStructure)
 								}}
 							></p>
 						</div>
@@ -131,20 +132,26 @@ function ProjectDetail() {
 							<p className={styles.subtitle}>Налоги и страховые взносы</p>
 							<p
 								dangerouslySetInnerHTML={{
-									__html: `${project.taxesAndInsurance}`
+									__html: DOMPurify.sanitize(project.taxesAndInsurance)
 								}}
 							></p>
 						</div>
 
 						<div className={styles.info_item}>
 							<p className={styles.subtitle}>Рабочие места</p>
-							<p dangerouslySetInnerHTML={{ __html: `${project.jobs}` }}></p>
+							<p
+								dangerouslySetInnerHTML={{
+									__html: DOMPurify.sanitize(project.jobs)
+								}}
+							></p>
 						</div>
 
 						<div className={styles.info_item}>
 							<p className={styles.subtitle}>Социальный эффект</p>
 							<p
-								dangerouslySetInnerHTML={{ __html: `${project.socialEffect}` }}
+								dangerouslySetInnerHTML={{
+									__html: DOMPurify.sanitize(project.socialEffect)
+								}}
 							></p>
 						</div>
 					</div>

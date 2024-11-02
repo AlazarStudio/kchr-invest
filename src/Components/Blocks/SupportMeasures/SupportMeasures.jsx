@@ -1,16 +1,37 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import 'swiper/css'
 import { Autoplay } from 'swiper/modules'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { smItem } from '../../../../data'
+import serverConfig from '../../../serverConfig'
 import SMItem from '../SMItem/SMItem'
 
 import styles from './SupportMeasures.module.css'
 
+const fetchSM = async () => {
+	try {
+		const response = await axios.get(`${serverConfig}/support-measures`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching products:', error)
+		return []
+	}
+}
+
 function SupportMeasures() {
 	const [swiper, setSwiper] = useState()
 	const [activeIndex, setActiveIndex] = useState(0)
+
+	const [sm, setSM] = useState([])
+
+	useEffect(() => {
+		const getProjects = async () => {
+			const sm = await fetchSM()
+			setSM(sm)
+		}
+		getProjects()
+	}, [])
 
 	return (
 		<section className={styles.support_measures}>
@@ -45,8 +66,8 @@ function SupportMeasures() {
 				onSwiper={setSwiper}
 				onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
 			>
-				{smItem.map((item, index) => (
-					<SwiperSlide key={index}>
+				{sm.map(item => (
+					<SwiperSlide key={item.id}>
 						<SMItem {...item} />
 					</SwiperSlide>
 				))}

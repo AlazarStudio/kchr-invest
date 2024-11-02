@@ -11,6 +11,12 @@
   font-weight: 600;
 }
 
+.projects_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
 @media (max-width: 1299px) {
   .main {
     margin: 90px 0 50px 0;
@@ -24,5 +30,6 @@
 
   .projects_wrapper {
     padding: 0 16px;
+    gap: 30px;
   }
 }

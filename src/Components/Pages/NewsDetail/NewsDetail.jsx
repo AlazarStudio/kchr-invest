@@ -1,11 +1,11 @@
 import axios from 'axios'
+import DOMPurify from 'dompurify'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useParams } from 'react-router-dom'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { news } from '../../../../data'
 import serverConfig from '../../../serverConfig'
 import uploadsConfig from '../../../uploadsConfig'
 import NewsItem from '../../Blocks/NewsItem/NewsItem'
@@ -89,7 +89,10 @@ function NewsDetail({ children, ...props }) {
 					</div>
 					<p
 						className={styles.article_text}
-						dangerouslySetInnerHTML={{ __html: `${article.text}` }}
+						dangerouslySetInnerHTML={{
+							__html: DOMPurify.sanitize(article.text)
+							// __html: `${article.text}`
+						}}
 					></p>
 
 					<div className={styles.article_images}>
