@@ -1,8 +1,10 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useParams } from 'react-router-dom'
 
-import { projects } from '../../../../data'
+import serverConfig from '../../../serverConfig'
+import uploadsConfig from '../../../uploadsConfig'
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock'
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock'
 
@@ -12,8 +14,23 @@ Modal.setAppElement('#root')
 
 function ProjectDetail() {
 	const { id } = useParams()
-	const project = projects.find(item => item.id == id)
+	const [project, setProject] = useState({})
+	// const project = projects.find(item => item.id == id)
 	const [selectedImage, setSelectedImage] = useState(null)
+
+	useEffect(() => {
+		const fetchNews = async () => {
+			try {
+				const response = await axios.get(
+					`${serverConfig}/projects/${parseInt(id)}`
+				)
+				setProject(response.data)
+			} catch (error) {
+				console.error('Error fetching news:', error)
+			}
+		}
+		fetchNews()
+	}, [id])
 
 	const openModal = img => {
 		setSelectedImage(img)
@@ -35,7 +52,14 @@ function ProjectDetail() {
 
 					<div className={styles.project_item_wrapper}>
 						<div className={styles.project_img}>
-							<img src={project.images[0]} alt='' />
+							<img
+								src={`${uploadsConfig}${
+									project.images &&
+									Array.isArray(project.images) &&
+									project.images[0]
+								}`}
+								alt=''
+							/>
 						</div>
 
 						<div className={styles.project_info}>
@@ -47,7 +71,11 @@ function ProjectDetail() {
 								<div className={styles.block_item}>
 									<p className={styles.title}>Ожидаемый доход «инвестора» </p>
 									<p className={styles.income}>
-										{project.expectedIncome} тыс. руб.
+										{project.expectedIncome &&
+											project.expectedIncome
+												.toString()
+												.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
+										тыс. руб.
 									</p>
 								</div>
 							</div>
@@ -57,7 +85,12 @@ function ProjectDetail() {
 							</div>
 							<div className={styles.description}>
 								<p className={styles.title}>Инвестиционные показатели</p>
-								<p className={styles.text}>{project.investmentIndicators}</p>
+								<p
+									className={styles.text}
+									dangerouslySetInnerHTML={{
+										__html: project.investmentIndicators
+									}}
+								></p>
 							</div>
 						</div>
 					</div>
@@ -74,7 +107,13 @@ function ProjectDetail() {
 
 						<div className={styles.indicator_item}>
 							<p>Годовая выручка после выхода на проектную мощность</p>
-							<p>{project.annualRevenue} тыс. руб.</p>
+							<p>
+								{project.annualRevenue &&
+									project.annualRevenue
+										.toString()
+										.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
+								тыс. руб.
+							</p>
 						</div>
 					</div>
 
@@ -110,20 +149,22 @@ function ProjectDetail() {
 						</div>
 					</div>
 
-					<div className={styles.article_images}>
-						{project.images &&
-							Array.isArray(project.images) &&
-							project.images.map((img, index) => (
-								<img
-									key={index}
-									src={img}
-									// src={`${uploadsConfig}${img}`}
-									alt=''
-									className={styles.image_thumbnail}
-									onClick={() => openModal(img)}
-								/>
-							))}
-					</div>
+					{Array.isArray(project.images) && project.images.length > 1 ? (
+						<div className={styles.article_images}>
+							{project.images &&
+								Array.isArray(project.images) &&
+								project.images.map((img, index) => (
+									<img
+										key={index}
+										// src={img}
+										src={`${uploadsConfig}${img}`}
+										alt=''
+										className={styles.image_thumbnail}
+										onClick={() => openModal(img)}
+									/>
+								))}
+						</div>
+					) : null}
 
 					<Modal
 						isOpen={!!selectedImage}
@@ -133,8 +174,8 @@ function ProjectDetail() {
 						overlayClassName={styles.modal_overlay}
 					>
 						<img
-							// src={`${uploadsConfig}${selectedImage}`}
-							src={selectedImage}
+							src={`${uploadsConfig}${selectedImage}`}
+							// src={selectedImage}
 							alt=''
 							className={styles.modal_image}
 						/>

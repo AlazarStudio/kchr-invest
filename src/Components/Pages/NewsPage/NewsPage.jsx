@@ -1,17 +1,38 @@
+import axios from 'axios'
 import { useEffect, useRef, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSearchParams } from 'react-router-dom'
 
 import { news } from '../../../../data'
+import serverConfig from '../../../serverConfig'
 import NewsItem from '../../Blocks/NewsItem/NewsItem'
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock'
 import WidthBlock from '../../Standart/WidthBlock/WidthBlock'
 
 import styles from './NewsPage.module.css'
 
+const fetchNews = async () => {
+	try {
+		const response = await axios.get(`${serverConfig}/news`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching products:', error)
+		return []
+	}
+}
+
 function NewsPage({ children, ...props }) {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const newsRef = useRef(null)
+	const [news, setNews] = useState([])
+
+	useEffect(() => {
+		const getNews = async () => {
+			const news = await fetchNews()
+			setNews(news)
+		}
+		getNews()
+	}, [])
 
 	const page = parseInt(searchParams.get('page')) || 1
 
@@ -66,26 +87,28 @@ function NewsPage({ children, ...props }) {
 					</div>
 
 					<div className={styles.news_wrapper}>
-						{displayNews.map((item, index) => (
-							<NewsItem key={index} {...item} />
+						{displayNews.map(item => (
+							<NewsItem key={item.id} {...item} />
 						))}
 					</div>
 
-					<ReactPaginate
-						previousLabel={<p style={{ fontSize: '24px' }}>&#8592;</p>}
-						nextLabel={<p style={{ fontSize: '24px' }}>&#8594;</p>}
-						breakLabel={'...'}
-						pageCount={pageCount}
-						forcePage={currentPage} // Используем currentPage без -1
-						marginPagesDisplayed={2}
-						pageRangeDisplayed={3}
-						onPageChange={handlePageClick}
-						containerClassName={styles.pagination}
-						pageClassName={styles.page}
-						previousClassName={styles.next_prev}
-						nextClassName={styles.next_prev}
-						activeClassName={styles.active}
-					/>
+					{news.length < 9 ? null : (
+						<ReactPaginate
+							previousLabel={<p style={{ fontSize: '24px' }}>&#8592;</p>}
+							nextLabel={<p style={{ fontSize: '24px' }}>&#8594;</p>}
+							breakLabel={'...'}
+							pageCount={pageCount}
+							forcePage={currentPage} // Используем currentPage без -1
+							marginPagesDisplayed={2}
+							pageRangeDisplayed={3}
+							onPageChange={handlePageClick}
+							containerClassName={styles.pagination}
+							pageClassName={styles.page}
+							previousClassName={styles.next_prev}
+							nextClassName={styles.next_prev}
+							activeClassName={styles.active}
+						/>
+					)}
 				</WidthBlock>
 			</CenterBlock>
 		</main>

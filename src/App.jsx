@@ -2,6 +2,8 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 
 import AboutRegion from './Components/Pages/AboutRegion/AboutRegion'
+import AdminPage from './Components/Pages/Admin/AdminPage'
+import ContactsPage from './Components/Pages/ContactsPage/ContactsPage'
 import DocsPage from './Components/Pages/DocsPage/DocsPage'
 import InvestorsPage from './Components/Pages/InvestorsPage/InvestorsPage'
 import LeadershipPage from './Components/Pages/LeadershipPage/LeadershipPage'
@@ -12,7 +14,6 @@ import NotFoundPage from './Components/Pages/NotFoundPage/NotFoundPage'
 import ProjectDetail from './Components/Pages/ProjectDetail/ProjectDetail'
 import Projects from './Components/Pages/Projects/Projects'
 import Layout from './Components/Standart/Layout/Layout'
-import ContactsPage from './Components/Pages/ContactsPage/ContactsPage'
 
 function App() {
 	return (
@@ -31,6 +32,7 @@ function App() {
 					<Route path='/contacts' element={<ContactsPage />} />
 					<Route path='*' element={<NotFoundPage />} />
 				</Route>
+				<Route path='/admin/*' element={<AdminPage />} />
 			</Routes>
 		</>
 	)

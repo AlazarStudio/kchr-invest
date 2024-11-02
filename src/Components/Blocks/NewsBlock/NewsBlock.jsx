@@ -1,16 +1,36 @@
-import { useState } from 'react'
+import axios from 'axios'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import { news } from '../../../../data'
+import serverConfig from '../../../serverConfig'
 import NewsItem from '../NewsItem/NewsItem'
 
 import styles from './NewsBlock.module.css'
 
+const fetchNews = async () => {
+	try {
+		const response = await axios.get(`${serverConfig}/news`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching products:', error)
+		return []
+	}
+}
+
 function NewsBlock({ children, ...props }) {
 	const [swiper, setSwiper] = useState()
 	const [activeIndex, setActiveIndex] = useState(0)
+	const [news, setNews] = useState([])
+
+	useEffect(() => {
+		const getNews = async () => {
+			const news = await fetchNews()
+			setNews(news)
+		}
+		getNews()
+	}, [])
 
 	return (
 		<section className={styles.news_section}>

@@ -1,3 +1,4 @@
+import axios from 'axios'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { useParams } from 'react-router-dom'
@@ -5,6 +6,7 @@ import 'swiper/css'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
 import { news } from '../../../../data'
+import serverConfig from '../../../serverConfig'
 import uploadsConfig from '../../../uploadsConfig'
 import NewsItem from '../../Blocks/NewsItem/NewsItem'
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock'
@@ -12,13 +14,45 @@ import WidthBlock from '../../Standart/WidthBlock/WidthBlock'
 
 import styles from './NewsDetail.module.css'
 
+const fetchNews = async () => {
+	try {
+		const response = await axios.get(`${serverConfig}/news`)
+		return response.data
+	} catch (error) {
+		console.error('Error fetching products:', error)
+		return []
+	}
+}
+
 Modal.setAppElement('#root')
 
 function NewsDetail({ children, ...props }) {
 	const { id } = useParams()
+	const [article, setArticle] = useState({})
 	const [selectedImage, setSelectedImage] = useState(null)
 	const [swiper, setSwiper] = useState()
 	const [activeIndex, setActiveIndex] = useState(0)
+	const [news, setNews] = useState([])
+
+	useEffect(() => {
+		const fetchNews = async () => {
+			try {
+				const response = await axios.get(`${serverConfig}/news/${parseInt(id)}`)
+				setArticle(response.data)
+			} catch (error) {
+				console.error('Error fetching news:', error)
+			}
+		}
+		fetchNews()
+	}, [id])
+
+	useEffect(() => {
+		const getNews = async () => {
+			const news = await fetchNews()
+			setNews(news)
+		}
+		getNews()
+	}, [])
 
 	const openModal = img => {
 		setSelectedImage(img)
@@ -28,18 +62,30 @@ function NewsDetail({ children, ...props }) {
 		setSelectedImage(null)
 	}
 
+	const formatDate = dateString => {
+		const options = {
+			day: '2-digit',
+			month: '2-digit',
+			year: 'numeric'
+			// hour: '2-digit',
+			// minute: '2-digit'
+		}
+
+		return new Date(dateString).toLocaleString('ru-RU', options)
+	}
+
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'instant' })
 	}, [])
 
-	const article = news.find(item => item.id == id)
+	// const article = news.find(item => item.id == id)
 	return (
 		<main className={styles.main}>
 			<CenterBlock>
 				<WidthBlock>
 					<div className={styles.article_header}>
 						<p>{article.title}</p>
-						<p>{article.date}</p>
+						<p>{formatDate(article.date)}</p>
 					</div>
 					<p
 						className={styles.article_text}
@@ -52,8 +98,8 @@ function NewsDetail({ children, ...props }) {
 							article.images.map((img, index) => (
 								<img
 									key={index}
-									src={img}
-									// src={`${uploadsConfig}${img}`}
+									// src={img}
+									src={`${uploadsConfig}${img}`}
 									alt=''
 									className={styles.image_thumbnail}
 									onClick={() => openModal(img)}
@@ -69,8 +115,8 @@ function NewsDetail({ children, ...props }) {
 						overlayClassName={styles.modal_overlay}
 					>
 						<img
-							// src={`${uploadsConfig}${selectedImage}`}
-							src={selectedImage}
+							src={`${uploadsConfig}${selectedImage}`}
+							// src={selectedImage}
 							alt=''
 							className={styles.modal_image}
 						/>
@@ -103,16 +149,19 @@ function NewsDetail({ children, ...props }) {
 						onSwiper={setSwiper}
 						onSlideChange={swiper => setActiveIndex(swiper.realIndex)}
 					>
-						{news.slice(-3).map((item, index) => (
-							<SwiperSlide
-								key={index}
-								onClick={() => {
-									window.scrollTo({ top: 0, behavior: 'instant' })
-								}}
-							>
-								<NewsItem {...item} />
-							</SwiperSlide>
-						))}
+						{news
+							.filter(item => item.id !== parseInt(id))
+							.slice(-3)
+							.map((item, index) => (
+								<SwiperSlide
+									key={index}
+									onClick={() => {
+										window.scrollTo({ top: 0, behavior: 'instant' })
+									}}
+								>
+									<NewsItem {...item} />
+								</SwiperSlide>
+							))}
 					</Swiper>
 				</WidthBlock>
 			</CenterBlock>

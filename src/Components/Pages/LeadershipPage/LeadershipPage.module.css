@@ -33,7 +33,7 @@
 
 .director_name {
   padding: 25px;
-  flex-grow: 1;
+  height: 225px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -97,9 +97,10 @@
   
   .director_name {
     padding: 20px 15px;
-    flex-grow: 1;
+    height: 140px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     gap: 10px;
     border-radius: 10px;
   }

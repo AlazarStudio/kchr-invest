@@ -18,10 +18,10 @@ function NewsItem({ children, ...props }) {
 	}
 	return (
 		<Link to={`/news/${props.id}`} className={styles.news_card__wrapper}>
-			<img src={props.images[0]} alt='' />
-			{/* <img src={`${uploadsConfig}${props.images[0]}`} alt='' /> */}
+			{/* <img src={props.images[0]} alt='' /> */}
+			<img src={`${uploadsConfig}${props.images[0]}`} alt='' />
 			<div className={styles.text}>
-				<p>{props.date}</p>
+				<p>{formatDate(props.date)}</p>
 				<p>{props.title}</p>
 			</div>
 		</Link>

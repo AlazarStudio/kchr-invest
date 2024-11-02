@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import uploadsConfig from '../../../uploadsConfig'
+
 import styles from './ProjectItem.module.css'
 
 function ProjectItem({ children, ...props }) {
@@ -9,7 +11,7 @@ function ProjectItem({ children, ...props }) {
 			className={styles.project_item_wrapper}
 		>
 			<div className={styles.project_img}>
-				<img src={props.images[0]} alt='' />
+				<img src={`${uploadsConfig}${props.images[0]}`} alt='' />
 			</div>
 
 			<div className={styles.project_info}>
@@ -21,7 +23,12 @@ function ProjectItem({ children, ...props }) {
 					</div>
 					<div className={styles.block_item}>
 						<p className={styles.title}>Ожидаемый доход «инвестора» </p>
-						<p className={styles.income}>{props.expectedIncome} тыс. руб.</p>
+						<p className={styles.income}>
+							{props.expectedIncome
+								.toString()
+								.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
+							тыс. руб.
+						</p>
 					</div>
 				</div>
 				<div className={styles.description}>
