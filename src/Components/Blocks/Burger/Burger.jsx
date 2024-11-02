@@ -57,6 +57,14 @@ function Burger({ children, ...props }) {
 						</NavLink>
 					))}
 				</ul>
+				<a
+					href='https://map.investkchr.ru/'
+					target='_blank'
+					className={styles.mapInvest}
+					style={{ textTransform: 'uppercase' }}
+				>
+					Инвестиционная карта
+				</a>
 			</nav>
 		</>
 	)

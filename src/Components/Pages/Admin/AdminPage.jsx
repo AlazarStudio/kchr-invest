@@ -1,4 +1,5 @@
 import AddBusinessIcon from '@mui/icons-material/AddBusiness'
+import CurrencyRubleIcon from '@mui/icons-material/CurrencyRuble'
 import EventIcon from '@mui/icons-material/Event'
 import FolderCopyIcon from '@mui/icons-material/FolderCopy'
 import ImageSearchIcon from '@mui/icons-material/ImageSearch'
@@ -22,6 +23,11 @@ import {
 } from './CRUD/DocGroupsCRUD'
 import { DocsCreate, DocsEdit, DocsList } from './CRUD/DocsCRUD'
 import { InfoCreate, InfoEdit, InfoList } from './CRUD/InfoCRUD'
+import {
+	InvestDocsCreate,
+	InvestDocsEdit,
+	InvestDocsList
+} from './CRUD/InvestDocsCRUD'
 import { NewsCreate, NewsEdit, NewsList } from './CRUD/NewsCRUD'
 import { ProjectCreate, ProjectEdit, ProjectList } from './CRUD/ProjectsCRUD'
 import { SMCreate, SMEdit, SMList } from './CRUD/SMCRUD'
@@ -44,6 +50,7 @@ function AdminPage() {
 			i18nProvider={i18nProvider}
 		>
 			<Resource
+				icon={WebStoriesIcon}
 				name='support-measures'
 				options={{ label: 'Меры поддержки' }}
 				list={<SMList />}
@@ -76,6 +83,15 @@ function AdminPage() {
 				list={<DocsList />}
 				edit={<DocsEdit />}
 				create={<DocsCreate />}
+			/>
+
+			<Resource
+				icon={TopicIcon}
+				name='invest-docs'
+				options={{ label: 'Инвесторам' }}
+				list={<InvestDocsList />}
+				edit={<InvestDocsEdit />}
+				create={<InvestDocsCreate />}
 			/>
 
 			{/* <Resource

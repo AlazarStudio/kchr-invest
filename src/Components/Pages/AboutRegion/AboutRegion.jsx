@@ -31,7 +31,7 @@ function AboutRegion({ children, ...props }) {
 	}, [])
 
 	const item = info[0]
-	console.log(info)
+	// console.log(info)
 	return (
 		<main className={styles.main}>
 			<div className={styles.region_banner}>

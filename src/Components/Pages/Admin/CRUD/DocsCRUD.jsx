@@ -53,8 +53,8 @@ export const DocsEdit = props => {
 	return (
 		<Edit {...props} transform={handleSaveWithDocument}>
 			<SimpleForm>
-				<ReferenceInput source='groupId' reference='group' label='Группа'>
-					<SelectInput optionText='title' />
+				<ReferenceInput source='groupId' reference='group'>
+					<SelectInput optionText='title' label='Группа' />
 				</ReferenceInput>
 				<Button label='Добавить группу' onClick={handleAddGroup}>
 					<AddIcon />
@@ -89,8 +89,8 @@ export const DocsCreate = props => {
 	return (
 		<Create {...props} transform={handleSaveDocument}>
 			<SimpleForm>
-				<ReferenceInput source='groupId' reference='group' label='Группа'>
-					<SelectInput optionText='title' required/>
+				<ReferenceInput source='groupId' reference='group'>
+					<SelectInput optionText='title' label='Группа' required />
 				</ReferenceInput>
 				<Button label='Добавить группу' onClick={handleAddGroup}>
 					<AddIcon />

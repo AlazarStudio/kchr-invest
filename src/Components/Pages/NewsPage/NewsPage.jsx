@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react'
 import ReactPaginate from 'react-paginate'
 import { useSearchParams } from 'react-router-dom'
 
-import { news } from '../../../../data'
 import serverConfig from '../../../serverConfig'
 import NewsItem from '../../Blocks/NewsItem/NewsItem'
 import CenterBlock from '../../Standart/CenterBlock/CenterBlock'
@@ -25,6 +24,7 @@ function NewsPage({ children, ...props }) {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const newsRef = useRef(null)
 	const [news, setNews] = useState([])
+	const [sortOrder, setSortOrder] = useState('newest') // состояние для порядка сортировки
 
 	useEffect(() => {
 		const getNews = async () => {
@@ -35,35 +35,47 @@ function NewsPage({ children, ...props }) {
 	}, [])
 
 	const page = parseInt(searchParams.get('page')) || 1
-
 	const itemsPerPage = 9
 	const pageCount = Math.ceil(news.length / itemsPerPage)
-
 	const safePage = Math.min(page, pageCount)
-
 	const [currentPage, setCurrentPage] = useState(safePage - 1)
 
-	const displayNews = news.slice(
+	// Сортируем новости в зависимости от порядка сортировки
+	const sortedNews = [...news].sort((a, b) => {
+		if (sortOrder === 'newest') {
+			return new Date(b.date) - new Date(a.date) // Сначала новые
+		} else {
+			return new Date(a.date) - new Date(b.date) // Сначала старые
+		}
+	})
+
+	const displayNews = sortedNews.slice(
 		currentPage * itemsPerPage,
 		(currentPage + 1) * itemsPerPage
 	)
 
 	const handlePageClick = ({ selected }) => {
 		setSearchParams({ page: selected + 1 })
-		setCurrentPage(selected) // Обновляем состояние currentPage
+		setCurrentPage(selected)
 		if (newsRef.current) {
 			newsRef.current.scrollIntoView({ behavior: 'smooth' })
 		}
 	}
 
+	const handleSortChange = e => {
+		setSortOrder(e.target.value)
+		setCurrentPage(0) // Сбрасываем на первую страницу после изменения сортировки
+		setSearchParams({ page: 1 })
+	}
+
 	useEffect(() => {
-		// Обновляем currentPage при изменении параметра страницы
 		setCurrentPage(safePage - 1)
 	}, [safePage])
 
 	useEffect(() => {
 		window.scrollTo({ top: 0, behavior: 'instant' })
 	}, [])
+
 	return (
 		<main className={styles.main}>
 			<CenterBlock>
@@ -74,15 +86,14 @@ function NewsPage({ children, ...props }) {
 					<div className={styles.filters}>
 						<div className={styles.filter_item}>
 							<p>Сортировка:</p>
-							<select name='' id=''>
-								<option value='' defaultValue>
-									Сначала новые
-								</option>
-								<option value=''>Сначала старые</option>
+							<select
+								name='sortOrder'
+								value={sortOrder}
+								onChange={handleSortChange}
+							>
+								<option value='newest'>Сначала новые</option>
+								<option value='oldest'>Сначала старые</option>
 							</select>
-						</div>
-						<div className={styles.filter_item}>
-							<input type='date' />
 						</div>
 					</div>
 
@@ -92,13 +103,13 @@ function NewsPage({ children, ...props }) {
 						))}
 					</div>
 
-					{news.length < 9 ? null : (
+					{news.length > itemsPerPage && (
 						<ReactPaginate
 							previousLabel={<p style={{ fontSize: '24px' }}>&#8592;</p>}
 							nextLabel={<p style={{ fontSize: '24px' }}>&#8594;</p>}
 							breakLabel={'...'}
 							pageCount={pageCount}
-							forcePage={currentPage} // Используем currentPage без -1
+							forcePage={currentPage}
 							marginPagesDisplayed={2}
 							pageRangeDisplayed={3}
 							onPageChange={handlePageClick}

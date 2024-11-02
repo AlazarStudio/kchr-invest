@@ -22,6 +22,13 @@ function MainPage() {
 			<CenterBlock>
 				<WidthBlock>
 					<StatData />
+					<a
+						href='docs/catalog_prom_product_2024_razvoroty.pdf'
+						target='_blank'
+						className={styles.catalog_banner}
+					>
+						<img src='images/catalog_banner.png' alt='' />
+					</a>
 					<SupportMeasures />
 					<BusinessCard />
 					<NewsBlock />

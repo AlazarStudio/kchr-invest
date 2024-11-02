@@ -31,22 +31,22 @@ export const navItems = [
 
 export const statData = [
 	{
-		value: '14,3',
+		value: 14.3,
 		measure: 'тыс. кв. км.',
 		title: 'Территория'
 	},
 	{
-		value: '470',
+		value: 470,
 		measure: 'тыс. человек',
 		title: 'Население региона'
 	},
 	{
-		value: '131',
+		value: 131,
 		measure: 'млрд. рублей',
 		title: 'ВРП'
 	},
 	{
-		value: '34',
+		value: 34,
 		measure: 'млрд. рублей',
 		title: 'Территория'
 	},

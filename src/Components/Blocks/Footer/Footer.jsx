@@ -75,6 +75,11 @@ function Footer({ children, ...props }) {
 					</div>
 
 					<div className={styles.footer_wrapper_mobile}>
+						<img
+							style={{ width: '220px' }}
+							src='/images/kchr-logo.jpeg'
+							alt=''
+						/>
 						<div className={styles.footer_item_mobile}>
 							<p onClick={() => toggleSection('investors')}>
 								Инвесторам{' '}
