@@ -30,7 +30,7 @@ function Auth() {
 
 		try {
 			const response = await axios.post(
-				`${serverConfig}/auth/login`,
+				`${serverConfig}auth/login`,
 				formData,
 				{
 					headers: { 'Content-Type': 'application/json' }
