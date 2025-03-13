@@ -20,7 +20,7 @@ function App() {
 	return (
 		<>
 			<Routes>
-				{/* <Route path='/' element={<Layout />}>
+				<Route path='/' element={<Layout />}>
 					<Route index element={<MainPage />} />
 					<Route path='/news' element={<NewsPage />} />
 					<Route path='/news/:id' element={<NewsDetail />} />
@@ -32,11 +32,11 @@ function App() {
 					<Route path='/management' element={<LeadershipPage />} />
 					<Route path='/contacts' element={<ContactsPage />} />
 					<Route path='*' element={<NotFoundPage />} />
-				</Route> */}
-				{/* <Route path='/admin/*' element={<AdminPage />} /> */}
-				<Route index element={<Block />} />
-				<Route path='*' element={<Block />} />
-				{/* <Route path='*' element={<NotFoundPage />} /> */}
+				</Route>
+				<Route path='/admin/*' element={<AdminPage />} />
+				{/* <Route index element={<Block />} /> */}
+				{/* <Route path='*' element={<Block />} /> */}
+				<Route path='*' element={<NotFoundPage />} />
 			</Routes>
 		</>
 	)
