@@ -22,6 +22,34 @@ function MainPage() {
 			<CenterBlock>
 				<WidthBlock>
 					<StatData />
+					<div class='banner-pb_wrapper'>
+						<div class='banner-pb_container'>
+							<div class='banner-pb_image'></div>
+							<div class='banner-pb_content'>
+								<div class='banner-pb_content__info'>
+									<p class='banner-pb_content__title'>
+										Возникли трудности при ведении бизнеса в регионе?
+									</p>
+									<p class='banner-pb_content__subtitle'>
+										Напишите, чтобы быстро получить ответ
+									</p>
+								</div>
+								<div class='banner-pb_content__link'>
+									<a
+										rel='noopener'
+										href='https://www.gosuslugi.ru/help/obratitsya_business'
+										target='_blank'
+									>
+										<div class='banner-pb_button'>Написать</div>
+									</a>
+									<img
+										class='banner-pb_icon'
+										src='/images/gosuslugi.svg'
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
 					<a
 						href='docs/catalog_prom_product_2024_razvoroty.pdf'
 						target='_blank'
