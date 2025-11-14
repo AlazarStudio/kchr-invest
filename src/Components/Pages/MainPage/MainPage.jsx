@@ -28,11 +28,17 @@ function MainPage() {
 							<div class='banner-pb_content'>
 								<div class='banner-pb_content__info'>
 									<p class='banner-pb_content__title'>
+										Вопросы по реализации инвестиционного проекта?
+									</p>
+									<p class='banner-pb_content__subtitle'>
+										Ответим в кратчайшие сроки
+									</p>
+									{/* <p class='banner-pb_content__title'>
 										Возникли трудности при ведении бизнеса в регионе?
 									</p>
 									<p class='banner-pb_content__subtitle'>
 										Напишите, чтобы быстро получить ответ
-									</p>
+									</p> */}
 								</div>
 								<div class='banner-pb_content__link'>
 									<a
