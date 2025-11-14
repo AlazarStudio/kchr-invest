@@ -317,9 +317,9 @@ export const contactsData = [
 	{
 		id: 2,
 		img: '/images/c_email.png',
-		link: 'mailto:mail@kchr-invest.ru',
+		link: 'mailto:corporation09@mail.ru',
 		title: 'Электронная почта',
-		value: 'mail@kchr-invest.ru'
+		value: 'corporation09@mail.ru'
 	},
 	{
 		id: 3,
